@@ -51,7 +51,7 @@ app.get('/weather', (req, res) => {
     geocode(address_search = req.query.address, (error, { latitude, longitude, location} = {}) => {
         if (error) return res.send({ error: "Can't find geocode in to the value " + req.query.address + '.' })
         
-        forecast(latitude, longitude, (error, { description, temperature, feelslike }) => {
+        forecast(latitude, longitude, (error, { description, temperature, feelslike, weather_icon_link }) => {
             if (error) return res.send(error)
             
             res.send({
@@ -59,6 +59,7 @@ app.get('/weather', (req, res) => {
                 description,
                 temperature,
                 feelslike,
+                weather_icon_link,
             })
         })
     })
